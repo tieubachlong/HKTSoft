@@ -5,6 +5,7 @@
 package longtest;
 
 import java.io.File;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,16 +25,11 @@ public class LongTest {
         try {
             if (CheckOS.isWindows()) {
                 String str = this.getClass().getResource("").getPath().substring(5);
-                File file = new File(str.substring(0, str.indexOf("bin")) + "bin\\pos.bat");
+                File file = new File(str.substring(0, str.indexOf("bin")) + "bin\\webserver.vbs");
+                String aa= file.getAbsolutePath().replaceAll("%20", " ");
+                String[] processCommand = { "cmd", "/c", aa };
 
-                String cmdarray[] = new String[]{"cmd", "/c", file.getAbsolutePath()};
-
-                Runtime.getRuntime().exec(cmdarray);
-                //  File f1 = new File(readData() + "\\server\\bin\\pos.bat");
-//
-//            
-//            String cmdarray[] = new String[]{"cmd", "/c",  f1.getAbsolutePath()};
-//            Runtime.getRuntime().exec(cmdarray);
+                Runtime.getRuntime().exec(processCommand);
             }
            // JOptionPane.showMessageDialog(null, CheckOS.isUnix());
             if (CheckOS.isUnix()) {
